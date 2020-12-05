@@ -4,7 +4,7 @@ The steps taken to implement this solution can be best summarised by the commit 
 It is written in go to demonstrate knowledge of a key part of the tech stack at MDC.
 
 Requires:
-go version 1.13
+go version 1.13 /n
 github.com/stretchr/testify/assert for tests.
 github.com/pkg/errors for clean error handling functionalities.
 
