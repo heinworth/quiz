@@ -13,6 +13,6 @@ As this is for a website, it would eventually have a HTTP interface. Due to limi
 
 Architecture:  
 The package API is intended to provide the external interface to the program, containing functions that would be consumed directly by HTTP handlers. Backend logic is implemented in these functions and is tested in api_test.go.  
-Whilst I did not have time to implement a database solution (I would have used the wonderful sqlx package), I was able to provide a mocking framework and use dependency injection so that a real database could be added without touching the functions containing the logic.  
+Whilst I did not have time to implement a database solution (I would have used the wonderful sqlx package), I was able to provide a mocking framework and use dependency injection so that a real database could be added without touching the functions containing the logic. This is also useful because it allows testing of these functions in isolation to the database.  
 The "domain" types used througout the app are defined in quiz/quiz.go.  
 The app could be easily containerised by adding a Dockerfile, however I chose not to prioritise this and instead focussed on providing the core program. 
