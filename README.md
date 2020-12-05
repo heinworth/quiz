@@ -3,7 +3,7 @@
 The steps taken to implement this solution can be best summarised by the commit history. According to commit timestamps, the time taken was just over 2 hours. While working my way through the requirements, I attempted to prioritise in such a way as to best reflect my engineering style. In particular, firstly defining an interface based on expected use cases (program to an interface, not an implementation!), secondly writing tests for the interface, and finally implementation.
 It is written in go to demonstrate knowledge of a key part of the tech stack at MDC.
 
-Requires:
+Requires:  
 go version 1.13.  
 github.com/stretchr/testify/assert for tests.  
 github.com/pkg/errors for clean error handling functionalities.  
