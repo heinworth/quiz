@@ -45,8 +45,25 @@ func TestCreateQuiz(t *testing.T) {
 			},
 			shouldError: false,
 		},
+		{
+			name: "Should not be able to save a published quiz",
+			quiz: quiz.Quiz{
+				Questions: []quiz.Question{
+					quiz.Question{
+						Options: [4]string{
+							"option 1",
+							"option 2",
+							"option 3",
+							"option 4",
+						},
+					},
+				},
+				IsPublished: true,
+			},
+			shouldError: true,
+		},
 	} {
-		err := CreateQuiz(database.MockDB{}, test.quiz)
+		err := SaveQuiz(database.MockDB{}, test.quiz)
 		assert.Equal(t, test.shouldError, err != nil)
 	}
 }

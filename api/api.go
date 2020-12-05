@@ -15,9 +15,13 @@ import (
 */
 
 /*
-	Created a new quiz and saves it to database.
+	Calls DB function to save quiz to database, after validating its questions.
+	Can be used as a POST or PUT function.
 */
-func CreateQuiz(DB database.DB, q quiz.Quiz) error {
+func SaveQuiz(DB database.DB, q quiz.Quiz) error {
+	if q.IsPublished {
+		return errors.New("Cannot save a published quiz")
+	}
 	for _, question := range q.Questions {
 		var foundOptions []string
 		for _, option := range question.Options {
@@ -49,8 +53,11 @@ func SubmitAnswers(DB database.DB, quiz quiz.Completed) error {
 func GetScore(email string, quizID int) (score, maxScore int){
 	return 0, 0
 }
-func PublishQuiz(quizID int) {}
-func EditQuiz(q quiz.Quiz) {}
+
+func PublishQuiz(q quiz.Quiz) {
+	q.IsPublished = true
+}
+
 func GetCompletedByUser(email string) []quiz.Completed {
 	return nil
 } 
