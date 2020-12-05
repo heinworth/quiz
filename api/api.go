@@ -50,23 +50,19 @@ func SubmitAnswers(DB database.DB, quiz quiz.Completed) error {
 	return DB.SaveScore(quiz.ID, calculateScore(quiz))
 }
 
-func GetScore(email string, quizID int) (score, maxScore int){
-	return 0, 0
+func GetScore(email string, quizID int) (score, maxScore int, err error){
+	return database.DBImplementation{}.GetScore(email, quizID)
 }
 
-func PublishQuiz(q quiz.Quiz) {
+func PublishQuiz(DB database.DB, q quiz.Quiz) error {
 	q.IsPublished = true
+	return SaveQuiz(DB, q)
 }
 
-func GetCompletedByUser(email string) []quiz.Completed {
-	return nil
+func GetCompletedByUser(email string) ([]quiz.Completed, error) {
+	return 	database.DBImplementation{}.GetCompletedByUser(email)
 } 
 
-func containsString(needle string, haystack []string) bool {
-	for _, v := range haystack {
-		if v == needle {
-			return true
-		}
-	}
-	return false
+func DeleteQuiz(quizID int64) error {
+	return nil
 }

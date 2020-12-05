@@ -84,7 +84,7 @@ func TestSubmitAnswers(t *testing.T) {
 	assert.Nil(t, SubmitAnswers(DB, request))
 }
 
-func testCalculateScore(t *testing.T) {
+func TestCalculateScore(t *testing.T) {
 	var completed quiz.Completed
 
 	completed.Questions = []quiz.Question{
@@ -105,5 +105,3 @@ func testCalculateScore(t *testing.T) {
 
 	assert.Equal(t, 0, calculateScore(completed))
 }
-
-

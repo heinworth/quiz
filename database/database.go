@@ -8,7 +8,7 @@ import "../quiz"
 */
 
 /* 
-	Proviced a framework to mock database access.
+	Provides a framework to mock database access.
 	This is useful for testing API functions before the DB has been implemented,
 	and allows testing without touching the database before we have set up a system
 	to use a different database in tests, for example.
@@ -56,25 +56,31 @@ func (m *MockDB) SetAlreadyCompleted(completed []quiz.Completed) {
 }
 
 func (db DBImplementation) SaveQuiz(q quiz.Quiz) error {
+	//TODO: implement database
 	return nil
 }
 
 func (db DBImplementation) SaveScore(quizID int, score int) error {
+	//TODO: implement database
 	return nil
 }
 
 func (db DBImplementation) GetScore(email string, quizID int) (score, maxScore int, err error) {
+	//TODO: implement database
 	return
 }
 
 func (db DBImplementation) PublishQuiz(QuizID int) error {
+	//TODO: implement database
 	return nil
 }
 
 func (db DBImplementation) EditQuiz(q quiz.Quiz) error {
+	//TODO: implement database
 	return nil
 }
 
 func (db DBImplementation) GetCompletedByUser(email string) ([]quiz.Completed, error) {
+	//TODO: implement database
 	return nil, nil
 } 

@@ -14,3 +14,12 @@ func calculateScore(quiz quiz.Completed) (score int) {
 	}
 	return score
 }
+
+func containsString(needle string, haystack []string) bool {
+	for _, v := range haystack {
+		if v == needle {
+			return true
+		}
+	}
+	return false
+}
