@@ -16,7 +16,8 @@ type Quiz struct {
 type Question struct {
 	QuizID int
 	Options [4]string
-	Answer string
+	CorrectAnswer string
+	ChosenAnswer string // answer chosen by the user
 }
 
 // Represents a quiz completed by a user.

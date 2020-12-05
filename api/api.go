@@ -43,7 +43,7 @@ func SubmitAnswers(DB database.DB, quiz quiz.Completed) error {
 			return errors.New("User has already completed this quiz")
 		}
 	}
-	return nil
+	return DB.SaveScore(quiz.ID, calculateScore(quiz))
 }
 
 func GetScore(email string, quizID int) (score, maxScore int){

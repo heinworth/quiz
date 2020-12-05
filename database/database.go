@@ -15,7 +15,7 @@ import "../quiz"
 */
 type DB interface{
 	SaveQuiz(q quiz.Quiz) error
-	SubmitAnswers(q quiz.Quiz) error
+	SaveScore(quizID int, score int) error
 	GetScore(email string, quizID int) (score, maxScore int, err error)
 	PublishQuiz(quizID int) error
 	EditQuiz(q quiz.Quiz) error
@@ -31,7 +31,7 @@ func (m MockDB) SaveQuiz(q quiz.Quiz) error {
 	return nil
 }
 
-func (m MockDB) SubmitAnswers(q quiz.Quiz) error {
+func (m MockDB) SaveScore(quizID int, score int) error {
 	return nil
 }
 
@@ -59,7 +59,7 @@ func (db DBImplementation) SaveQuiz(q quiz.Quiz) error {
 	return nil
 }
 
-func (db DBImplementation) SubmitAnswers(q quiz.Quiz) error {
+func (db DBImplementation) SaveScore(quizID int, score int) error {
 	return nil
 }
 
