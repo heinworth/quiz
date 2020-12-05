@@ -4,7 +4,7 @@ import (
 	"../quiz"
 	"../database"
 	"fmt"
-	"errors"
+	errors "github.com/pkg/errors"
 )
 
 /**
@@ -14,9 +14,10 @@ import (
 	be unexported.
 */
 
-var DB = database.MockDB{}
-
-func CreateQuiz(q quiz.Quiz) error {
+/*
+	Created a new quiz and saves it to database.
+*/
+func CreateQuiz(DB database.DB, q quiz.Quiz) error {
 	for _, question := range q.Questions {
 		var foundOptions []string
 		for _, option := range question.Options {
@@ -28,7 +29,23 @@ func CreateQuiz(q quiz.Quiz) error {
 	}
 	return DB.SaveQuiz(q)
 }
-func SubmitAnswers() {}
+
+/*
+	Submit answers to a quiz. Errors if user has already completed this quiz before.
+*/
+func SubmitAnswers(DB database.DB, quiz quiz.Completed) error {
+	alreadyCompleted, err := DB.GetCompletedByUser(quiz.CompletedByEmail)
+	if err != nil {
+		return errors.Wrap(err, "DB error")
+	} 		
+	for _, v := range alreadyCompleted {
+		if v.ID == quiz.ID {
+			return errors.New("User has already completed this quiz")
+		}
+	}
+	return nil
+}
+
 func GetScore(email string, quizID int) (score, maxScore int){
 	return 0, 0
 }

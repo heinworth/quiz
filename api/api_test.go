@@ -2,6 +2,7 @@ package api
 
 import (
 	"../quiz"
+	"../database"
 	"testing"
 	"github.com/stretchr/testify/assert"
 )
@@ -45,9 +46,25 @@ func TestCreateQuiz(t *testing.T) {
 			shouldError: false,
 		},
 	} {
-		err := CreateQuiz(test.quiz)
+		err := CreateQuiz(database.MockDB{}, test.quiz)
 		assert.Equal(t, test.shouldError, err != nil)
 	}
+}
+
+func TestSubmitAnswers(t *testing.T) {
+	DB := database.MockDB{}
+	DB.SetAlreadyCompleted([]quiz.Completed {
+		quiz.Completed{
+			Quiz: quiz.Quiz{ID: 1},
+		},
+	})
+	request := quiz.Completed {
+		Quiz: quiz.Quiz{ID: 1},
+	}
+	assert.NotNil(t, SubmitAnswers(DB, request))
+
+	DB.SetAlreadyCompleted(nil)
+	assert.Nil(t, SubmitAnswers(DB, request))
 }
 
 
