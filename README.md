@@ -8,10 +8,10 @@ go version 1.13.
 github.com/stretchr/testify/assert for tests.  
 github.com/pkg/errors for clean error handling functionalities.  
 
-Usage:
+Usage:  
 As this is for a website, it would eventually have a HTTP interface. Due to limited time, this is not in place, but functions are consumed and demonstrated by running go test in api/.
 
-Architecture:
+Architecture:  
 The package API is intended to provide the external interface to the program, containing functions that would be consumed directly by HTTP handlers. Backend logic is implemented in these functions and is tested in api_test.go.  
 Whilst I did not have time to implement a database solution (I would have used the wonderful sqlx package), I was able to provide a mocking framework and use dependency injection so that a real database could be added without touching the functions containing the logic.  
 The "domain" types used througout the app are defined in quiz/quiz.go.  
